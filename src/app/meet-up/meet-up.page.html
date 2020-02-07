@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar style="padding-right: 5% !important">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon  slot="end" name="search"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons>
+    
+    <ion-title style="text-align: center;">Meetup</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="searchMe">
+    <ion-button style="float: right !important; margin-right: 3% !important; margin-top: 3% !important;"  slot="end" class="cart" (click)="isSearchbarOpened=true">
+      <ion-icon name="options-outline"></ion-icon>
+
+    </ion-button>
+    <ion-searchbar showCancelButton="focus" class="searchBar" cancelButtonText="X"
+    (search)="onSearch($event)" (ionCancel)="isSearchbarOpened=false" style="width: 80% !important;"></ion-searchbar>
+   
+    <!-- <ion-buttons slot="end">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons> -->
+  </div>
+    <ion-row>
+      <ion-col size="3">
+        <ion-button  color="primary">Dress</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button  color="tertiary">Pants</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="tertiary">Blazers</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="tertiary">Jackets</ion-button>
+      </ion-col>
+    </ion-row>
+
+  <div class="lists">
+    <ion-row>
+      <ion-col size="6" *ngFor="let product of listAll">
+        <div>
+          <ion-card (click)="productDetails(product.id)" class="categories"
+            style='margin: auto; height: max-content; width: 100%;'>
+            <ion-card-content style='padding: 1px;'>
+              <div *ngIf="spinner"
+                style="z-index: 100; position: fixed; height: 100%; width: 90%; text-align: center; padding-top: 50% !important; opacity: 0.6;">
+                <ion-spinner name="Crescent"></ion-spinner>
+              </div>
+              <img [src]="product.avatar" height="120%" width="130px">
+            </ion-card-content>
+            <ion-footer style="height: 100% !important; background-color: #ffffff; margin-left: 5px;
+             padding-top: 2% !important; padding-bottom: 2% !important;">
+              <div style="font-family: Prata;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 14px;
+              line-height: 19px;             
+              
+              color: #222222;">{{product.first_name}}, {{product.last_name}}</div>
+              <span style="padding-top: 5%; padding-bottom: 5%;">{{product.email}}</span><br>
+
+
+            </ion-footer>
+
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

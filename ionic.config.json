@@ -1,0 +1,7 @@
+{
+  "name": "enovate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
