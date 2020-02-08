@@ -15,53 +15,70 @@
       <p class="graph">
         Please enter your details to sign in
       </p>
+      <div class="incorrect">
+        <span *ngIf="incorrect || incorrects" class="wrong"> Something went Wrong!!! </span>
+         <p *ngIf="incorrects" class="grap">
+           Please check your internet connection !
+         </p>
+         <p *ngIf="incorrect" class="grap">
+           Wrong login details !
+         </p>
+       </div>
     </div>
 
     <form [formGroup]="formModel">
 
       <ion-list style="margin-top: 5% !important;">
+       
         <ion-item>
 
           <ion-label position="floating"> Phone Number</ion-label>
           <ion-input class="form-control" [(ngModel)]="phoneNumber" formControlName="phoneNumber" type="text"
-           style="padding-left: 10px !important;" value=""></ion-input>
-          <label class="text-danger" *ngIf="formModel.get('phoneNumber').touched && 
-            formModel.get('phoneNumber').errors?.required">
-            This field is required
-          </label>
+            style="padding-left: 10px !important;" value=""></ion-input>
+
 
         </ion-item>
+        <ion-label style="color:  #D02764; font-size: 70%;  margin-top: 5%;" class="text-danger" *ngIf="formModel.get('phoneNumber').touched &&
+        formModel.get('phoneNumber').errors?.required">
+         This field is required
+       </ion-label>
         <ion-item>
           <ion-label position="floating"> Pin</ion-label>
 
-          <ion-input class="form-control" [(ngModel)]="pin" formControlName="pin" [type]="passwordType" pattern="[0-9]*"
+          <ion-input class="form-control" [(ngModel)]="pin" formControlName="pin" [type]="passwordType"
             style="padding-left: 10px !important;"></ion-input>
           <ion-icon [name]="passwordShown === true ? 'eye' : 'eye-off' " color="gray" slot="end"
             (click)="togglePassword()"></ion-icon>
-          <label class="text-danger" *ngIf="formModel.get('pin').touched && formModel.get('pin').errors?.required">
-            This field is required
-          </label>
+
+           
         </ion-item>
-
-        <!-- <div>
-          <ion-checkbox checked="true"></ion-checkbox>
-          <ion-label> I agree to the terms and condition</ion-label>
-        </div> -->
-
-        <div style="font-size: 70% !important; margin: 4%; float: right; margin-right: 5%; color:  #D02764;">
+        <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" 
+        *ngIf="formModel.get('pin').touched && formModel.get('pin').errors?.required">
+            This field is required
+          </ion-label>
+        <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" 
+        *ngIf="incorrect">
+            Email or Password Incorrect
+          </ion-label>
+        <div style="font-size: 70% !important; margin-top: 2% !important; margin: 4%; float: right; margin-right: 5%; color:  #D02764;">
           Forgot your pin?
         </div>
         <div>
-        <ion-button type="button" expand="block" class="sub" (click)="login()">Sign In
-          <!-- <ion-spinner style="font-size: 60% !important;" *ngIf="spinner" color="market" name="crescent"></ion-spinner> -->
-        </ion-button>
-      </div>
+          <ion-button type="button"  [disabled]= "!formModel.valid" expand="block" class="sub" (click)="logins()">Sign In
+            <ion-spinner style="font-size: 60% !important;" *ngIf="spinner" color="tertiary" name="bubbles"></ion-spinner> 
+          </ion-button>
+        </div>
         <div style="text-align: center !important; margin-top: 15% !important;">
-          Already have an account? <span (click)="signUp()" style="color:  #D02764;">Sign Up</span>
+          Don’t have an account? <span (click)="signUp()" style="color:  #D02764;">Sign Up</span>
         </div>
       </ion-list>
 
 
     </form>
   </div>
+  <ion-footer style="margin-bottom: 0 !important; padding-bottom: 1% !important; bottom: 0% !important;">
+    <div style="text-align: center; bottom: 0 !important; margin-bottom: 0% !important; padding-bottom: 0% !important; padding-top: 10% !important; font-family: Poppins;">
+      copyright © meetup
+    </div>
+  </ion-footer>
 </ion-content>

@@ -2,7 +2,7 @@
 
 
 
-  <div class="cover">
+  <div style="font-family: Poppins;" class="cover">
 
     <div class="logo">
 
@@ -12,73 +12,80 @@
       <span class="bolde">
         Register!
       </span>
-      <p class="graph">
-        Please enter your details to sign in
-      </p>
+      <div class="incorrect">
+       <span *ngIf="incorrect || incorrects" class="wrong"> Something went Wrong!!! </span>
+        <p *ngIf="incorrects" class="graph">
+          Please check your internet connection !
+        </p>
+        <p *ngIf="incorrect" class="graph">
+          Wrong registration details !
+        </p>
+      </div>
+     
     </div>
 
     <form [formGroup]="formModel">
 
       <ion-list style="margin-top: 5% !important;">
         <ion-item>
-
           <ion-label position="floating"> Full Name</ion-label>
-          <ion-input class="form-control" [(ngModel)]="phoneNumber" formControlName="phoneNumber" type="text"
-           style="padding-left: 10px !important;" value=""></ion-input>
-          <label class="text-danger" *ngIf="formModel.get('phoneNumber').touched && 
-            formModel.get('phoneNumber').errors?.required">
-            This field is required
-          </label>
-
+          <ion-input class="form-control" [(ngModel)]="fullName" formControlName="fullName" type="text"
+            style="padding-left: 10px !important;" value=""></ion-input>
         </ion-item>
+        <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" class="text-danger" *ngIf="formModel.get('fullName').touched && 
+        formModel.get('fullName').errors?.required">
+          This field is required
+        </ion-label>
         <ion-item>
-
           <ion-label position="floating"> Phone Number</ion-label>
           <ion-input class="form-control" [(ngModel)]="phoneNumber" formControlName="phoneNumber" type="text"
-           style="padding-left: 10px !important;" value=""></ion-input>
-          <label class="text-danger" *ngIf="formModel.get('phoneNumber').touched && 
-            formModel.get('phoneNumber').errors?.required">
-            This field is required
-          </label>
-
+            style="padding-left: 10px !important;" value=""></ion-input>
         </ion-item>
+        <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" *ngIf="formModel.get('phoneNumber').touched && 
+        formModel.get('phoneNumber').errors?.required">
+          This field is required
+        </ion-label>
         <div formGroupName="pins">
-        <ion-item>
-          <ion-label position="floating"> Pin</ion-label>
 
-          <ion-input class="form-control" [(ngModel)]="pin" formControlName="pin" [type]="passwordType" pattern="[0-9]*"
-            style="padding-left: 10px !important;"></ion-input>
-          <ion-icon [name]="passwordShown === true ? 'eye' : 'eye-off' " color="gray" slot="end"
-            (click)="togglePassword()"></ion-icon>
-          <label class="text-danger" *ngIf="formModel.get('pins.pin').touched && formModel.get('pins.pin').errors?.required">
+          <ion-item>
+            <ion-label position="floating"> Pin</ion-label>
+            <ion-input class="form-control" [(ngModel)]="pin" formControlName="pin" [type]="passwordType"
+              pattern="[0-9]*" style="padding-left: 10px !important;"></ion-input>
+            <ion-icon [name]="passwordShown === true ? 'eye' : 'eye-off' " color="gray" slot="end"
+              (click)="togglePassword()"></ion-icon>
+          </ion-item>
+          <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger"
+            *ngIf="formModel.get('pins.pin').touched && formModel.get('pins.pin').errors?.required">
             This field is required
-          </label>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Repeat Pin</ion-label>
+          </ion-label>
+          <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" *ngIf="incorrect">
+            Email or Password Incorrect
+          </ion-label>
+          <ion-item>
+            <ion-label position="floating">Repeat Pin</ion-label>
 
-          <ion-input class="form-control" [(ngModel)]="confirmPin" formControlName="confirmPin" [type]="passwordType" pattern="[0-9]*"
-            style="padding-left: 10px !important;"></ion-input>
-          <ion-icon [name]="passwordShown === true ? 'eye' : 'eye-off' " color="gray" slot="end"
-            (click)="togglePassword()"></ion-icon>
-            <label class="text-danger"
-             *ngIf="formModel.get('pins.confirmPin').touched 
-             && formModel.get('pins.confirmPin').errors?.passwordMismatch">
-               Passwords must match
-          </label>
-          <label class="text-danger" *ngIf="formModel.get('pins.confirmPin').touched 
+            <ion-input class="form-control" [(ngModel)]="confirmPin" formControlName="confirmPin" [type]="passwordType"
+              style="padding-left: 10px !important;"></ion-input>
+            <ion-icon [name]="passwordShown === true ? 'eye' : 'eye-off' " color="gray" slot="end"
+              (click)="togglePassword()"></ion-icon>
+
+
+          </ion-item>
+          <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" *ngIf="formModel.get('pins.confirmPin').touched 
           && formModel.get('pins.confirmPin').errors?.required">
             This field is required
-          </label>
-          
-        </ion-item>
-      </div>
+          </ion-label>
+          <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" *ngIf="formModel.get('pins.confirmPin').touched 
+             && formModel.get('pins.confirmPin').errors?.passwordMismatch">
+            Passwords must match
+          </ion-label>
+        </div>
         <div style="font-size: 80% !important; margin: 4%;">
           <ion-checkbox checked="true"></ion-checkbox>
           <ion-label> I agree to the terms and condition</ion-label>
         </div><br>
-        <ion-button type="button" expand="block" class="sub">Sign In
-          <!-- <ion-spinner style="font-size: 60% !important;" *ngIf="spinner" color="market" name="crescent"></ion-spinner> -->
+        <ion-button type="button"  [disabled]= "!formModel.valid" expand="block" (click)="registration()" class="sub">Register
+          <ion-spinner style="font-size: 60% !important;" *ngIf="spinner" color="tertiary" name="bubbles"></ion-spinner> 
         </ion-button>
 
         <div style="text-align: center !important;  margin-top: 5% !important; ">
@@ -89,4 +96,9 @@
 
     </form>
   </div>
+  <ion-footer style="margin-bottom: 0% !important;">
+    <div style="text-align: center; padding-top: 10% !important; margin-bottom: 0 !important; font-family: Poppins;">
+      copyright © meetup
+    </div>
+  </ion-footer>
 </ion-content>

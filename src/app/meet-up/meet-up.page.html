@@ -4,14 +4,14 @@
       <ion-menu-button autoHide="false">
       </ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" style="margin-right: 3%;">
       <ion-icon  slot="end" name="search"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-icon name="notifications-outline"></ion-icon>
+    <ion-buttons slot="end"  style="margin-right: 3%;">
+      <fa-icon [icon]="['far', 'bell']" slot="end"></fa-icon>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-icon name="notifications-outline"></ion-icon>
+    <ion-buttons slot="end" style="margin-right: 3%;">
+      <fa-icon [icon]="['far', 'bell']" slot="end"></fa-icon>
     </ion-buttons>
     
     <ion-title style="text-align: center;">Meetup</ion-title>
@@ -23,7 +23,10 @@
 
   <div class="searchMe">
     <ion-button style="float: right !important; margin-right: 3% !important; margin-top: 3% !important;"  slot="end" class="cart" (click)="isSearchbarOpened=true">
-      <ion-icon name="options-outline"></ion-icon>
+     
+      <!-- <i class="fas fa-sliders-h"></i> -->
+      <fa-icon [icon]="['fas', 'sliders-h']" slot="end"></fa-icon>
+      <!-- <i class="far fa-sliders-v"></i> -->
 
     </ion-button>
     <ion-searchbar showCancelButton="focus" class="searchBar" cancelButtonText="X"
@@ -35,16 +38,16 @@
   </div>
     <ion-row>
       <ion-col size="3">
-        <ion-button  color="primary">Dress</ion-button>
+        <ion-button class="butto"  color="secondary">Dress</ion-button>
       </ion-col>
       <ion-col size="3">
-        <ion-button  color="tertiary">Pants</ion-button>
+        <ion-button class="butto"  color="tertiary">Pants</ion-button>
       </ion-col>
       <ion-col size="3">
-        <ion-button color="tertiary">Blazers</ion-button>
+        <ion-button class="butto"  color="tertiary">Blazers</ion-button>
       </ion-col>
       <ion-col size="3">
-        <ion-button color="tertiary">Jackets</ion-button>
+        <ion-button class="butto"  color="tertiary">Jackets</ion-button>
       </ion-col>
     </ion-row>
 
@@ -70,7 +73,10 @@
               line-height: 19px;             
               
               color: #222222;">{{product.first_name}}, {{product.last_name}}</div>
-              <span style="padding-top: 5%; padding-bottom: 5%;">{{product.email}}</span><br>
+              <span style="padding-top: 5%; padding-bottom: 5%;">{{product.email}}</span>
+              <!-- <i class="fas fa-ellipsis-v"></i>   -->
+              <fa-icon style="float: right; margin-right: 7%;" [icon]="['fas', 'ellipsis-v']" slot="end"></fa-icon>
+
 
 
             </ion-footer>

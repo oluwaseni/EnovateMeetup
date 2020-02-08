@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MeetUpPageRoutingModule } from './meet-up-routing.module';
 
 import { MeetUpPage } from './meet-up.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    FontAwesomeModule,
     MeetUpPageRoutingModule
   ],
   declarations: [MeetUpPage]
