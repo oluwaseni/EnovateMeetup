@@ -23,7 +23,7 @@ export class RegisterPage implements OnInit {
   passwordShown: boolean = false;
 
   formModel= this.fb.group({
-    fullName: ['', Validators.required],
+    fullName: [''],
     phoneNumber: ['', Validators.required],
     pins: this.fb.group({
       pin: ['', [Validators.required, Validators.minLength(4)]],

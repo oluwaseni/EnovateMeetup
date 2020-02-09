@@ -4,7 +4,13 @@
 
   <div style="font-family: Poppins;" class="cover">
 
-    <div class="logo">
+     <div class="logo">
+      <div class="egg-shape"></div>
+      <div class="egg-shape-purple"></div>
+      <div class="log">
+        <fa-icon [icon]="['fas', 'street-view']" slot="end"></fa-icon>
+        meet<span style="color: #D02764 !important;">Up</span>
+      </div>
 
     </div>
 
@@ -32,12 +38,12 @@
           <ion-input class="form-control" [(ngModel)]="fullName" formControlName="fullName" type="text"
             style="padding-left: 10px !important;" value=""></ion-input>
         </ion-item>
-        <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" class="text-danger" *ngIf="formModel.get('fullName').touched && 
+        <!-- <ion-label style="color:  #D02764; font-size: 70%;" class="text-danger" class="text-danger" *ngIf="formModel.get('fullName').touched && 
         formModel.get('fullName').errors?.required">
           This field is required
-        </ion-label>
+        </ion-label> -->
         <ion-item>
-          <ion-label position="floating"> Phone Number</ion-label>
+          <ion-label position="floating"> Email address</ion-label>
           <ion-input class="form-control" [(ngModel)]="phoneNumber" formControlName="phoneNumber" type="text"
             style="padding-left: 10px !important;" value=""></ion-input>
         </ion-item>
@@ -50,7 +56,7 @@
           <ion-item>
             <ion-label position="floating"> Pin</ion-label>
             <ion-input class="form-control" [(ngModel)]="pin" formControlName="pin" [type]="passwordType"
-              pattern="[0-9]*" style="padding-left: 10px !important;"></ion-input>
+             style="padding-left: 10px !important;"></ion-input>
             <ion-icon [name]="passwordShown === true ? 'eye' : 'eye-off' " color="gray" slot="end"
               (click)="togglePassword()"></ion-icon>
           </ion-item>

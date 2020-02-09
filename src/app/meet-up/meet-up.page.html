@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar style="padding-right: 5% !important">
+    
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false">
+        
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" style="margin-right: 3%;">
@@ -19,22 +21,39 @@
   </ion-toolbar>
 </ion-header>
 
+
+<ion-menu side="start" contentId="menuContent">
+  <ion-header>
+       <ion-toolbar color="primary">
+        <ion-title style="font-size: 80%;">
+          <fa-icon [icon]="['fas', 'street-view']"></fa-icon>Meetup</ion-title>
+       </ion-toolbar>
+   </ion-header>
+   <ion-content>
+      <ion-list>
+        
+        <ion-item (click)="logout()" 
+        style="padding: 0% !important; color: #000000;
+         cursor: pointer; font-size: 80%; margin: 0% !important;">
+         Logout
+         <fa-icon [icon]="['fas', 'sign-out-alt']" slot="end"></fa-icon>
+          </ion-item>
+      </ion-list>
+   </ion-content>
+</ion-menu>
+<ion-router-outlet id="menuContent"></ion-router-outlet>
+
 <ion-content>
 
   <div class="searchMe">
     <ion-button style="float: right !important; margin-right: 3% !important; margin-top: 3% !important;"  slot="end" class="cart" (click)="isSearchbarOpened=true">
      
-      <!-- <i class="fas fa-sliders-h"></i> -->
       <fa-icon [icon]="['fas', 'sliders-h']" slot="end"></fa-icon>
-      <!-- <i class="far fa-sliders-v"></i> -->
 
     </ion-button>
     <ion-searchbar showCancelButton="focus" class="searchBar" cancelButtonText="X"
     (search)="onSearch($event)" (ionCancel)="isSearchbarOpened=false" style="width: 80% !important;"></ion-searchbar>
-   
-    <!-- <ion-buttons slot="end">
-      <ion-icon name="notifications-outline"></ion-icon>
-    </ion-buttons> -->
+ 
   </div>
     <ion-row>
       <ion-col size="3">
@@ -72,10 +91,12 @@
               font-size: 14px;
               line-height: 19px;             
               
-              color: #222222;">{{product.first_name}}, {{product.last_name}}</div>
+              color: #222222;">{{product.first_name}}, {{product.last_name}}
+            <fa-icon style="float: right; margin-right: 7%;" [icon]="['fas', 'ellipsis-v']" slot="end"></fa-icon>  
+            </div>
+              
               <span style="padding-top: 5%; padding-bottom: 5%;">{{product.email}}</span>
-              <!-- <i class="fas fa-ellipsis-v"></i>   -->
-              <fa-icon style="float: right; margin-right: 7%;" [icon]="['fas', 'ellipsis-v']" slot="end"></fa-icon>
+              
 
 
 

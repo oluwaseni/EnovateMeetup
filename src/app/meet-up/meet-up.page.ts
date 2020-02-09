@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EnovateService } from '../services/enovate.service';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-meet-up',
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class MeetUpPage implements OnInit {
 
-  constructor( private _service:EnovateService, private _route:Router) { }
+  constructor( private _service:EnovateService, private _route:Router,private menu: MenuController) { }
 
   listAll:any;
   ngOnInit() {
-    
+    this.menu.enable(false, 'menuContent');
     this.callLists()
   }
 
@@ -21,7 +22,14 @@ export class MeetUpPage implements OnInit {
     sessionStorage.clear()
     this._route.navigate(['login'])
   }
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
 
+  clickButton(){
+    return 'tertiary'
+  }
 
   callLists(){
     this._service.list().subscribe(res=> {
